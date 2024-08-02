@@ -5,6 +5,14 @@ from torch.utils import Dataloader
 
 
 def main():
+    """
+    Main function to train the CountNet3D model using example data.
+
+    - Initializes the model with example geometry dictionary and camera properties.
+    - Sets up the synthetic dataset and dataloader for training.
+    - Trains the model for a specified number of epochs, printing the loss at each epoch.
+    """
+
     #example dict
     geometry_dict = {
         "class_1": 0,
@@ -14,7 +22,8 @@ def main():
         "class_5": 4
     }
     num_classes = 5
-    model = CountNet3D(num_classes, geometry_dict, (500, 500, 500, 500))
+    camera_properties = (500, 500, 500, 500)
+    model = CountNet3D(num_classes, geometry_dict, camera_properties)
 
     dataset = ExampleDataset(num_samples=100)
     dataloader = Dataloader(dataset, batch_size=8, shuffle=True)
