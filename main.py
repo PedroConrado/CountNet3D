@@ -1,10 +1,11 @@
-from CountNet import CountNet3D
-from Dataset import ExampleDataset
+from CountNet3D.CountNet import CountNet3D
+from CountNet3D.Dataset import ExampleDataset
 from torch import nn, optim
 from torch.utils import Dataloader
 
 
 def main():
+    #example dict
     geometry_dict = {
         "class_1": 0,
         "class_2": 1,
@@ -13,7 +14,7 @@ def main():
         "class_5": 4
     }
     num_classes = 5
-    model = CountNet3D(num_classes, geometry_dict)
+    model = CountNet3D(num_classes, geometry_dict, (500, 500, 500, 500))
 
     dataset = ExampleDataset(num_samples=100)
     dataloader = Dataloader(dataset, batch_size=8, shuffle=True)
